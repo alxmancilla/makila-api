@@ -1,2 +1,2 @@
 # makila-api
-API for loading and querying data into Sakila database
+API for loading into and querying data from Sakila database
