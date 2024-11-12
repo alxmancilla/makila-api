@@ -1,4 +1,5 @@
 spring:
+  name: api
   datasource:
     postgresql:
       url: jdbc:postgresql://localhost:5432/sakila
