@@ -28,7 +28,4 @@ public class ProductService {
         return productRepository.findByReleaseYear(year);
     }
     
-    public List<Product> getProductsWithinRentalRate(Double maxRate) {
-        return productRepository.findProductsWithinRentalRate(maxRate);
-    }
 }
