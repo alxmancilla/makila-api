@@ -2,7 +2,13 @@ package org.makila.api.model.postgresql;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Data
 @Entity
@@ -12,10 +18,7 @@ public class OrderLine {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "orderlineid")
     private Integer id;
-    
-    @Column(name = "orderid")
-    private Integer orderId;    
-    
+        
     @Column(name = "prod_id")
     private Integer prodId;    
      
@@ -24,4 +27,12 @@ public class OrderLine {
       
     @Column(name = "orderdate")
     private LocalDateTime orderDate;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "orderid")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @Getter(onMethod = @__( @JsonIgnore))
+    @Setter
+    private Order order;
+
 }

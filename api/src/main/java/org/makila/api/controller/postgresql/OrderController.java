@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
 
 
 @RestController
-@RequestMapping("/api/orders")
+@RequestMapping("/api/pg/orders")
 @RequiredArgsConstructor
 public class OrderController {
     private final OrderService orderService;
@@ -27,7 +27,7 @@ public class OrderController {
         return ResponseEntity.ok(orderService.getOrderById(id));
     }
     
-    @GetMapping("/dates/")
+    @GetMapping("/btwndates/")
     public ResponseEntity<List<Order>> getOrdersBetweeOrderDates(@RequestParam(value = "minDate", defaultValue = "2004-01-01") String minD,@RequestParam(value = "maxDate", defaultValue = "2004-01-01") String maxD ) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); 
         LocalDateTime minDate = LocalDate.parse(minD, formatter).atStartOfDay(); 
@@ -35,4 +35,18 @@ public class OrderController {
          
         return ResponseEntity.ok(orderService.getOrdersBetweenOrderDates(minDate, maxDate));
     }
+
+    @PostMapping("/order")
+    public ResponseEntity<Order> saveProduct(@RequestBody Order order) {
+        Order newOrder = orderService.saveOrder(order);
+        return ResponseEntity.ok(newOrder);
+    }
+
+
+    @DeleteMapping("/orders/{id}")
+    public ResponseEntity<String> deleteOrder(@PathVariable Integer id) {
+        orderService.deleteOrder(id);
+        return ResponseEntity.ok("Order deleted successfully");
+    }
+
 }
