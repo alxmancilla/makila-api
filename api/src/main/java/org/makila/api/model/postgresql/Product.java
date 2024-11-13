@@ -3,7 +3,6 @@ package org.makila.api.model.postgresql;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -11,31 +10,27 @@ import java.time.LocalDateTime;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "product_id")
+    @Column(name = "id")
     private Long id;
     
+    @Column(name = "category", nullable = false)
+    private Integer category;
+
+    @Column(name = "title", nullable = false)
     private String title;
-    private String description;
-    
-    @Column(name = "release_year")
-    private Integer releaseYear;
-    
-    @Column(name = "rental_duration")
-    private Integer rentalDuration;
-    
-    @Column(name = "rental_rate")
-    private BigDecimal rentalRate;
-    
-    private Integer length;
-    
-    @Column(name = "replacement_cost")
-    private BigDecimal replacementCost;
-    
-    private String rating;
-    
-    @Column(name = "special_features")
-    private String specialFeatures;
-    
-    @Column(name = "last_update")
-    private LocalDateTime lastUpdate;
+
+    @Column(name = "actor")
+    private String actor;
+
+    @Column(name = "price", precision = 10, scale = 2) // Specify precision and scale for decimals
+    private BigDecimal price;
+
+    @Column(name = "special")
+    private Integer special;
+
+    @Column(name = "commonProdId")
+    private Integer commonProdId;
+
+    @Column(name = "categoryname")
+    private String categoryName;
 }

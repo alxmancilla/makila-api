@@ -4,6 +4,8 @@ import org.makila.api.model.postgresql.Product;
 import org.makila.api.repository.postgresql.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -20,12 +22,15 @@ public class ProductService {
             .orElseThrow(() -> new RuntimeException("Product not found"));
     }
     
-    public List<Product> searchProducts(String title) {
-        return productRepository.findByTitleContainingIgnoreCase(title);
+    public List<Product> getPopularProducts(String category, LocalDate starDate, LocalDate endDate) {
+        return productRepository.popularProductsByCategoryAndPeriod(category, starDate, endDate);
     }
-    
-    public List<Product> getProductsByYear(Integer year) {
-        return productRepository.findByReleaseYear(year);
+
+    public List<Product> getProductsByTitle(String title) {
+        return productRepository.findByTitle(title);
     }
-    
+
+    public List<Product> getProductsByCategory(String category) {
+        return productRepository.findByCategory(category);
+    }
 }

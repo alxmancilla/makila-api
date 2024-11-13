@@ -3,8 +3,12 @@ package org.makila.api.controller.postgresql;
 import org.makila.api.model.postgresql.Product;
 import org.makila.api.service.postgresql.ProductService;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -23,18 +27,21 @@ public class ProductController {
         return ResponseEntity.ok(productService.getProductById(id));
     }
     
+    @GetMapping("/popular")
+    public List<Product> getPopularProducts(
+            @RequestParam String category,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) {
+        return productService.getPopularProducts(category, startDate, endDate);
+    }
+
     @GetMapping("/search")
-    public ResponseEntity<List<Product>> searchProducts(@RequestParam String title) {
-        return ResponseEntity.ok(productService.searchProducts(title));
+    public ResponseEntity<List<Product>> searchProductsByTitle(@RequestParam String title) {
+        return ResponseEntity.ok(productService.getProductsByTitle(title));
     }
     
-    @GetMapping("/year/{year}")
-    public ResponseEntity<List<Product>> getProductsByYear(@PathVariable Integer year) {
-        return ResponseEntity.ok(productService.getProductsByYear(year));
-    }
-    
-    @GetMapping("/rental-rate")
-    public ResponseEntity<List<Product>> getProductsWithinRentalRate(@RequestParam Double maxRate) {
-        return ResponseEntity.ok(productService.getProductsWithinRentalRate(maxRate));
+    @GetMapping("/category/{category}")
+    public List<Product> getProductsByCategory(@PathVariable String category) {
+        return productService.getProductsByCategory(category);
     }
 }
