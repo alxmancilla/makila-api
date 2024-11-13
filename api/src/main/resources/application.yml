@@ -2,9 +2,9 @@ spring:
   name: api
   datasource:
     postgresql:
-      url: jdbc:postgresql://localhost:5432/sakila
-      username: postgres
-      password: postgres
+      url: jdbc:postgresql://makila-postgres.cymtbjk7fwn8.us-east-1.rds.amazonaws.com:5432/Delistore 
+      username: makila
+      password: pg2mongo
       driver-class-name: org.postgresql.Driver
   
   data:
