@@ -6,7 +6,6 @@ import org.makila.api.model.postgresql.Customer;
 import org.makila.api.service.postgresql.CustomerService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +18,7 @@ public class CustomerController {
     private final CustomerService customerService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Customer> getCustomerById(@PathVariable Integer id) {
+    public ResponseEntity<Customer> getCustomerById(Long id) {
         return ResponseEntity.ok(customerService.getCustomerById(id));
     }
 
