@@ -8,7 +8,5 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByTitleContainingIgnoreCase(String title);
     List<Product> findByReleaseYear(Integer year);
-    
-    @Query("SELECT f FROM Film f WHERE f.rentalRate <= :maxRate")
-    List<Product> findFilmsWithinRentalRate(Double maxRate);
+   
 }

@@ -33,8 +33,4 @@ public class ProductController {
         return ResponseEntity.ok(productService.getProductsByYear(year));
     }
     
-    @GetMapping("/rental-rate")
-    public ResponseEntity<List<Product>> getProductsWithinRentalRate(@RequestParam Double maxRate) {
-        return ResponseEntity.ok(productService.getProductsWithinRentalRate(maxRate));
-    }
 }

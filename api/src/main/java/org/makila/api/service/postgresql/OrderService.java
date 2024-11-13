@@ -6,6 +6,8 @@ import org.makila.api.repository.postgresql.OrderRepository;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -14,6 +16,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class OrderService {
+    @Autowired  
     private final OrderRepository orderRepository;
 
     @Autowired
@@ -33,17 +36,19 @@ public class OrderService {
         return orderRepository.findOrdersBetweenOrderDates(minDate, maxDate);
     }
 
-    public Order saveOrder(Order order) {
+    @Transactional
+    public Order addOrder(Order order) {
         System.out.println("before save Order: " + order);
-        order = orderRepository.save(order);
-        System.out.println("after save Order: " + order);
-        final Order finalOrder = order;
+        final Order orderSavedToDB = this.orderRepository.save(order);
+        System.out.println("after save Order: " + orderSavedToDB);
+    
         order.getItems().forEach(item -> {
-            item.setOrderId(finalOrder.getId());
+            item.setOrder(orderSavedToDB);
             System.out.println("before save item: " + item);
-            orderLineRepository.save(item);
+            this.orderLineRepository.save(item);
        });
-       return order;
+       
+       return orderSavedToDB;
     } 
     
     public void deleteOrder(Integer id) {
