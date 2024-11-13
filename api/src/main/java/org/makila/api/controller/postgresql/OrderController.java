@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 
 @RestController
@@ -25,8 +27,12 @@ public class OrderController {
         return ResponseEntity.ok(orderService.getOrderById(id));
     }
     
-    @GetMapping("/dates/{minDate}-{maxDate}")
-    public ResponseEntity<List<Order>> getOrdersBetweeOrderDates(@RequestParam LocalDateTime minDate,@RequestParam LocalDateTime maxDate ) {
+    @GetMapping("/dates/")
+    public ResponseEntity<List<Order>> getOrdersBetweeOrderDates(@RequestParam(value = "minDate", defaultValue = "2004-01-01") String minD,@RequestParam(value = "maxDate", defaultValue = "2004-01-01") String maxD ) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); 
+        LocalDateTime minDate = LocalDate.parse(minD, formatter).atStartOfDay(); 
+        LocalDateTime maxDate = LocalDate.parse(maxD, formatter).atStartOfDay(); 
+         
         return ResponseEntity.ok(orderService.getOrdersBetweenOrderDates(minDate, maxDate));
     }
 }

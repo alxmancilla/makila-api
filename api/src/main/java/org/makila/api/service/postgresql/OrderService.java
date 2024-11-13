@@ -25,4 +25,13 @@ public class OrderService {
     public List<Order> getOrdersBetweenOrderDates(LocalDateTime minDate, LocalDateTime maxDate) {
         return orderRepository.findOrdersBetweenOrderDates(minDate, maxDate);
     }
+
+    public Order saveOrder(Order order) {
+        return orderRepository.save(order);
+    } 
+    
+    public void deleteOrder(Integer id) {
+        orderRepository.deleteById(id);
+    }
+    
 }
