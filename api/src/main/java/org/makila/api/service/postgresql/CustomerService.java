@@ -22,7 +22,9 @@ public class CustomerService {
         return customerRepository.findAll();
     }
 
-    public List<Customer> getDeliveryInfoWithState(String state) {
+   /*
+   public List<Customer> getDeliveryInfoWithState(String state) {
         return customerRepository.findDeliveryInfoWithState(state);
     }
+    */ 
 }
