@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -31,6 +31,6 @@ public class Order {
     private LocalDateTime orderDate;
    
     // @OneToMany(mappedBy = "orderId", cascade = CascadeType.ALL)
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.MERGE, mappedBy = "order")
-    private List<OrderLine> items;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "orderId")
+    private Set<OrderLine> items;
 }

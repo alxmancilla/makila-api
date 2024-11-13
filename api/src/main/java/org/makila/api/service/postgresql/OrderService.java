@@ -34,11 +34,14 @@ public class OrderService {
     }
 
     public Order saveOrder(Order order) {
+        System.out.println("before save Order: " + order);
         order = orderRepository.save(order);
-        Order finalOrder = order;
+        System.out.println("after save Order: " + order);
+        final Order finalOrder = order;
         order.getItems().forEach(item -> {
-           item.setOrder(finalOrder);
-           orderLineRepository.save(item);
+            item.setOrderId(finalOrder.getId());
+            System.out.println("before save item: " + item);
+            orderLineRepository.save(item);
        });
        return order;
     } 

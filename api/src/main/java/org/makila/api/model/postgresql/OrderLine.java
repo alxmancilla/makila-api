@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Table(name = "orderlines")
 public class OrderLine {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+   // @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "orderlineid")
     private Integer id;
         
@@ -28,11 +28,15 @@ public class OrderLine {
     @Column(name = "orderdate")
     private LocalDateTime orderDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @Column(name = "orderid")
+    private Integer orderId;
+    
+    /** 
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "orderid")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @Getter(onMethod = @__( @JsonIgnore))
     @Setter
     private Order order;
-
+    */
 }
