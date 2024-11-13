@@ -36,9 +36,9 @@ public class OrderController {
         return ResponseEntity.ok(orderService.getOrdersBetweenOrderDates(minDate, maxDate));
     }
 
-    @PostMapping("/order")
-    public ResponseEntity<Order> saveProduct(@RequestBody Order order) {
-        Order newOrder = orderService.saveOrder(order);
+    @PostMapping("/add")
+    public ResponseEntity<Order> addOrder(@RequestBody Order order) {
+        Order newOrder = orderService.addOrder(order);
         return ResponseEntity.ok(newOrder);
     }
 

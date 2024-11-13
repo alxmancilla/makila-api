@@ -35,6 +35,6 @@ public class Order {
     private BigDecimal totalAmount;
    
     // @OneToMany(mappedBy = "orderId", cascade = CascadeType.ALL)
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "orderId")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
     private Set<OrderLine> items;
 }
