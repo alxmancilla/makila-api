@@ -2,7 +2,11 @@ package org.makila.api.repository.mongodb;
 
 
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
 import org.makila.api.model.mongodb.ProductsEntity;
+
+import java.util.List;
+
 import org.bson.types.ObjectId;
 
 /**
@@ -15,4 +19,9 @@ import org.bson.types.ObjectId;
 
 */
 public interface ProductsRepository extends MongoRepository<ProductsEntity, ObjectId> {
+    List<ProductsEntity> findByTitleContainingIgnoreCase(String title);
+    List<ProductsEntity> findByReleaseYear(Integer year);
+    
+    @Query("{ 'category' : ?0 }")
+    List<ProductsEntity> findByCategory(String category);
 }

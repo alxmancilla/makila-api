@@ -2,6 +2,10 @@ package org.makila.api.repository.mongodb;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.makila.api.model.mongodb.OrdersEntity;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
 import org.bson.types.ObjectId;
 
 /**
@@ -14,4 +18,5 @@ import org.bson.types.ObjectId;
 
 */ 
 public interface OrdersRepository extends MongoRepository<OrdersEntity, ObjectId> {
+    List<OrdersEntity> findOrdersBetweenOrderDates(LocalDateTime minDate, LocalDateTime maxDate);
 }
