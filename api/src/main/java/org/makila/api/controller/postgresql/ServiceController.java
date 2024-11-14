@@ -24,18 +24,18 @@ public class ServiceController {
         return ResponseEntity.ok(orderService.getAllOrders());
     }
     
-    @GetMapping("/orders/{id}")
+    @GetMapping("/order/{id}")
     public ResponseEntity<Order> getOrderById(@PathVariable Integer id) {
         return ResponseEntity.ok(orderService.getOrderById(id));
     }
     
-    @PostMapping("/orders/")
+    @PostMapping("/order/")
     public ResponseEntity<Order> addOrder(@RequestBody Order order) {
         Order newOrder = orderService.saveOrder(order);
         return ResponseEntity.ok(newOrder);
     }
 
-    @DeleteMapping("/orders/{id}")
+    @DeleteMapping("/order/{id}")
     public ResponseEntity<String> deleteOrder(@PathVariable Integer id) {
         orderService.deleteOrder(id);
         return ResponseEntity.ok("Order deleted successfully");
