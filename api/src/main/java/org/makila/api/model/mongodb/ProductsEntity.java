@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.math.BigDecimal;
 import org.bson.codecs.pojo.annotations.BsonProperty;
-import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
@@ -27,14 +26,11 @@ import javax.annotation.Generated;
 
  */
 @JsonTypeName("products")
-@Generated(value = "com.mongodb.migrator.application.codegen.config.java.JavaSpringCodegenConfig", date = "2024-11-13T10:01:35.986721-06:00[America/Chicago]", comments = "Generator version: 7.7.0")@Document("products")
+@Generated(value = "com.mongodb.migrator.application.codegen.config.java.JavaSpringCodegenConfig", date = "2024-11-13T19:15:26.151300-06:00[America/Chicago]", comments = "Generator version: 7.7.0")@Document("products")
 public class ProductsEntity {
 
   @BsonProperty("_id")
-  private ObjectId id = null;
-
-  @BsonProperty("prodId")
-  private Integer prodId;
+  private Integer id;
 
   @BsonProperty("category")
   private Integer category;
@@ -57,7 +53,7 @@ public class ProductsEntity {
   @BsonProperty("categoryname")
   private String categoryname;
 
-  public ProductsEntity id(ObjectId id) {
+  public ProductsEntity id(Integer id) {
     this.id = id;
     return this;
   }
@@ -68,31 +64,12 @@ public class ProductsEntity {
    */
   
   @JsonProperty("_id")
-  public ObjectId getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(ObjectId id) {
+  public void setId(Integer id) {
     this.id = id;
-  }
-
-  public ProductsEntity prodId(Integer prodId) {
-    this.prodId = prodId;
-    return this;
-  }
-
-  /**
-   * Get prodId
-   * @return prodId
-   */
-  
-  @JsonProperty("prodId")
-  public Integer getProdId() {
-    return prodId;
-  }
-
-  public void setProdId(Integer prodId) {
-    this.prodId = prodId;
   }
 
   public ProductsEntity category(Integer category) {
@@ -237,7 +214,6 @@ public class ProductsEntity {
     }
     ProductsEntity products = (ProductsEntity) o;
     return Objects.equals(this.id, products.id) &&
-        Objects.equals(this.prodId, products.prodId) &&
         Objects.equals(this.category, products.category) &&
         Objects.equals(this.title, products.title) &&
         Objects.equals(this.actor, products.actor) &&
@@ -249,7 +225,7 @@ public class ProductsEntity {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, prodId, category, title, actor, price, special, commonProdId, categoryname);
+    return Objects.hash(id, category, title, actor, price, special, commonProdId, categoryname);
   }
 
   @Override
@@ -257,7 +233,6 @@ public class ProductsEntity {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProductsEntity {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    prodId: ").append(toIndentedString(prodId)).append("\n");
     sb.append("    category: ").append(toIndentedString(category)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    actor: ").append(toIndentedString(actor)).append("\n");
