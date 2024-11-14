@@ -14,4 +14,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByTitleContainingIgnoreCase(String title);
     @Query(value = "SELECT * FROM products WHERE title ~ :title", nativeQuery = true)
     List<Product> searchProducts(@RequestParam String title);
+    @Query(value = "SELECT * FROM products WHERE category = :category", nativeQuery = true)
+    List<Product> findByCategoryContainingIgnoreCase(Integer category);
 }
