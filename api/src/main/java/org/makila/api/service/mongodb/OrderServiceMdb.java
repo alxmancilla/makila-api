@@ -29,7 +29,8 @@ public class OrderServiceMdb {
     // }
 
     public OrdersEntity saveOrder(OrdersEntity order) {
-        order = orderRepository.save(order);
+       order.setId(Integer.sum(orderRepository.findMaxId().intValue(), 1));
+       order = orderRepository.save(order);
        return order;
     } 
 
