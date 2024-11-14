@@ -14,10 +14,10 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query(value = """
         SELECT p FROM Product p 
-        JOIN Order o ON p.id = o.prodId
+        JOIN OrderLine o ON p.id = o.prodId
         WHERE p.category = :category
         AND o.orderDate BETWEEN :startDate AND :endDate
-        GROUP BY p.prodId, p.category, p.title, p.actor, p.price, p.special, p.commonProdId, p.categoryName
+        GROUP BY p.id, p.category, p.title, p.actor, p.price, p.special, p.commonProdId, p.categoryName
         ORDER BY COUNT(o.prodId) DESC
     """)
     List<Product> popularProductsByCategoryAndPeriod(
@@ -30,5 +30,24 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> searchProductsByTitle(@Param("title") String title);
 
     List<Product> findByCategory(@Param("category") String category);
+
+    @Query(value = """
+        WITH ranked_products AS (
+              SELECT (delivery_info  -> 'address' ->> 'state') AS state,
+                      title,
+                FROM customers
+                GROUP BY (delivery_info  -> 'address' ->> 'state')
+            ),
+            top_states AS (
+                SELECT state
+                FROM state_counts
+                ORDER BY count DESC
+                LIMIT 5
+            )
+            SELECT *
+            FROM customers
+            WHERE (delivery_info  -> 'address' ->> 'state') IN (SELECT state FROM top_states)
+    """)
+    List<Product> popularProductsByState(@Param("state") String state);
 
 }

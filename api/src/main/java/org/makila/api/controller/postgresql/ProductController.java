@@ -30,8 +30,8 @@ public class ProductController {
     @GetMapping("/popular")
     public List<Product> getPopularProducts(
             @RequestParam String category,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) {
+            @RequestParam LocalDate startDate,
+            @RequestParam LocalDate endDate) {
         return productService.getPopularProducts(category, startDate, endDate);
     }
 

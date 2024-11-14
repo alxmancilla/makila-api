@@ -14,7 +14,7 @@ public class Product {
     private Long id;
     
     @Column(name = "category", nullable = false)
-    private Integer category;
+    private String category;
 
     @Column(name = "title", nullable = false)
     private String title;
