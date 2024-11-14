@@ -9,6 +9,7 @@ spring:
       username: makila
       password: pg2mongo
       driver-class-name: org.postgresql.Driver
+      initialize: false
   
   data:
     mongodb:
