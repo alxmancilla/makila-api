@@ -32,21 +32,25 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByCategory(@Param("category") String category);
 
     @Query(value = """
-        WITH ranked_products AS (
-              SELECT (delivery_info  -> 'address' ->> 'state') AS state,
-                      title,
-                FROM customers
-                GROUP BY (delivery_info  -> 'address' ->> 'state')
-            ),
-            top_states AS (
-                SELECT state
-                FROM state_counts
-                ORDER BY count DESC
-                LIMIT 5
-            )
-            SELECT *
-            FROM customers
-            WHERE (delivery_info  -> 'address' ->> 'state') IN (SELECT state FROM top_states)
+        SELECT
+            p.prod_id,
+            p.title,
+        SUM(ol.quantity) AS total_quantity_sold
+        FROM
+            Customer c
+        JOIN
+            orders o ON c.customerid = o.customerid
+        JOIN
+            orderlines ol ON o.orderid = ol.orderid
+        JOIN
+            products p ON ol.prod_id = p.prod_id
+        WHERE
+            jsonb_extract_path_text(c.delivery_info, 'address', 'state') = :state
+        GROUP BY
+            p.prod_id, p.title
+        ORDER BY
+            total_quantity_sold DESC
+        LIMIT 3
     """)
     List<Product> findByState(@Param("state") String state);
 
