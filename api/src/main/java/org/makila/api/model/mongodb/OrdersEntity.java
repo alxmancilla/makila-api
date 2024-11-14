@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.bson.codecs.pojo.annotations.BsonProperty;
-import org.bson.types.ObjectId;
 import org.makila.api.model.mongodb.OrdersOrderlinesInnerEntity;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -33,14 +32,11 @@ import javax.annotation.Generated;
 
  */
 @JsonTypeName("orders")
-@Generated(value = "com.mongodb.migrator.application.codegen.config.java.JavaSpringCodegenConfig", date = "2024-11-13T10:01:35.799579-06:00[America/Chicago]", comments = "Generator version: 7.7.0")@Document("orders")
+@Generated(value = "com.mongodb.migrator.application.codegen.config.java.JavaSpringCodegenConfig", date = "2024-11-13T19:15:26.055449-06:00[America/Chicago]", comments = "Generator version: 7.7.0")@Document("orders")
 public class OrdersEntity {
 
   @BsonProperty("_id")
-  private ObjectId id = null;
-
-  @BsonProperty("orderid")
-  private Integer orderid;
+  private Integer id;
 
   @BsonProperty("orderdate")
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
@@ -62,7 +58,7 @@ public class OrdersEntity {
   
   private List<OrdersOrderlinesInnerEntity> orderlines = new ArrayList<>();
 
-  public OrdersEntity id(ObjectId id) {
+  public OrdersEntity id(Integer id) {
     this.id = id;
     return this;
   }
@@ -73,31 +69,12 @@ public class OrdersEntity {
    */
   
   @JsonProperty("_id")
-  public ObjectId getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(ObjectId id) {
+  public void setId(Integer id) {
     this.id = id;
-  }
-
-  public OrdersEntity orderid(Integer orderid) {
-    this.orderid = orderid;
-    return this;
-  }
-
-  /**
-   * Get orderid
-   * @return orderid
-   */
-  
-  @JsonProperty("orderid")
-  public Integer getOrderid() {
-    return orderid;
-  }
-
-  public void setOrderid(Integer orderid) {
-    this.orderid = orderid;
   }
 
   public OrdersEntity orderdate(LocalDateTime orderdate) {
@@ -231,7 +208,6 @@ public class OrdersEntity {
     }
     OrdersEntity orders = (OrdersEntity) o;
     return Objects.equals(this.id, orders.id) &&
-        Objects.equals(this.orderid, orders.orderid) &&
         Objects.equals(this.orderdate, orders.orderdate) &&
         Objects.equals(this.customerid, orders.customerid) &&
         Objects.equals(this.netamount, orders.netamount) &&
@@ -242,7 +218,7 @@ public class OrdersEntity {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, orderid, orderdate, customerid, netamount, tax, totalamount, orderlines);
+    return Objects.hash(id, orderdate, customerid, netamount, tax, totalamount, orderlines);
   }
 
   @Override
@@ -250,7 +226,6 @@ public class OrdersEntity {
     StringBuilder sb = new StringBuilder();
     sb.append("class OrdersEntity {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    orderid: ").append(toIndentedString(orderid)).append("\n");
     sb.append("    orderdate: ").append(toIndentedString(orderdate)).append("\n");
     sb.append("    customerid: ").append(toIndentedString(customerid)).append("\n");
     sb.append("    netamount: ").append(toIndentedString(netamount)).append("\n");

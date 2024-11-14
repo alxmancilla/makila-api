@@ -34,7 +34,6 @@ public class Order {
     @Column(name = "totalamount", nullable = false, precision = 10, scale = 2)
     private BigDecimal totalAmount;
    
-    // @OneToMany(mappedBy = "orderId", cascade = CascadeType.ALL)
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
     private Set<OrderLine> items;
 }
