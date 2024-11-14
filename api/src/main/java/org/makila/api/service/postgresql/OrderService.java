@@ -6,6 +6,8 @@ import org.makila.api.repository.postgresql.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 
+import jakarta.persistence.EntityManager;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +25,9 @@ public class OrderService {
     @Autowired
     private OrderLineRepository orderLineRepository;
 
-    
+    @Autowired
+    private EntityManager entityManager;
+
     public List<Order> getAllOrders() {
         return orderRepository.findAll();
     }
@@ -40,14 +44,15 @@ public class OrderService {
     @Transactional (rollbackFor = Exception.class)
     public Order addOrder(Order order) {
         System.out.println("before save Order: " + order);
-        final Order orderSavedToDB = this.orderRepository.save(order);
+        Order orderSavedToDB = this.orderRepository.save(order);
         System.out.println("after save Order: " + orderSavedToDB);
+        entityManager.flush();
     
-        order.getItems().forEach(item -> {
+        orderSavedToDB.getItems().forEach(item -> {
             item.setOrder(orderSavedToDB);
             //System.out.println("before save item: " + item);
        });
-       this.orderLineRepository.saveAll(order.getItems());       
+       this.orderLineRepository.saveAll(orderSavedToDB.getItems());       
        return orderSavedToDB;
     } 
     

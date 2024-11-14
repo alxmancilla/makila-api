@@ -31,6 +31,6 @@ public class Order {
     private LocalDateTime orderDate;
    
     // @OneToMany(mappedBy = "orderId", cascade = CascadeType.ALL)
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE, mappedBy = "order")
     private Set<OrderLine> items;
 }
