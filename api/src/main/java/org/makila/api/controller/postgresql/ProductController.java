@@ -44,4 +44,9 @@ public class ProductController {
     public List<Product> getProductsByCategory(@PathVariable String category) {
         return productService.getProductsByCategory(category);
     }
+
+    @GetMapping("/state/{state}")
+    public List<Product> getProductsByState(@PathVariable String state) {
+        return productService.getProductsByState(state);
+    }
 }

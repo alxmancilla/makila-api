@@ -48,6 +48,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             FROM customers
             WHERE (delivery_info  -> 'address' ->> 'state') IN (SELECT state FROM top_states)
     """)
-    List<Product> popularProductsByState(@Param("state") String state);
+    List<Product> findByState(@Param("state") String state);
 
 }
