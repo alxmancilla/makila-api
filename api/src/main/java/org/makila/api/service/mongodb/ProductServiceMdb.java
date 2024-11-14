@@ -28,9 +28,9 @@ public class ProductServiceMdb {
             .orElseThrow(() -> new RuntimeException("Product not found"));
     }
 
-    // public List<ProductsEntity> searchProducts(String title) {
-    //     return productRepository.findByTitleContainingIgnoreCase(title);
-    // }
+    public List<ProductsEntity> searchProducts(String title) {
+        return productRepository.findByTitleContainingIgnoreCase(title);
+    }
     
     // public List<ProductsEntity> getProductsByYear(Integer year) {
     //     return productRepository.findByReleaseYear(year);
