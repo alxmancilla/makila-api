@@ -1,20 +1,22 @@
 package org.makila.api.controller.postgresql;
 
 import org.makila.api.model.postgresql.Order;
+import org.makila.api.model.postgresql.OrderLine;
 import org.makila.api.service.postgresql.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Iterator;
 import java.util.List;
-import java.time.LocalDateTime;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.util.LinkedList;
+import java.util.Set;
 
 
 @RestController
-@RequestMapping("/api/pg/orders")
+@RequestMapping("/api/pg/")
 @RequiredArgsConstructor
-public class OrderController {
+public class ServiceController {
     private final OrderService orderService;
     
     @GetMapping
@@ -22,26 +24,16 @@ public class OrderController {
         return ResponseEntity.ok(orderService.getAllOrders());
     }
     
-    @GetMapping("/{id}")
+    @GetMapping("/orders/{id}")
     public ResponseEntity<Order> getOrderById(@PathVariable Integer id) {
         return ResponseEntity.ok(orderService.getOrderById(id));
     }
     
-    @GetMapping("/btwndates/")
-    public ResponseEntity<List<Order>> getOrdersBetweeOrderDates(@RequestParam(value = "minDate", defaultValue = "2004-01-01") String minD,@RequestParam(value = "maxDate", defaultValue = "2004-01-01") String maxD ) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); 
-        LocalDateTime minDate = LocalDate.parse(minD, formatter).atStartOfDay(); 
-        LocalDateTime maxDate = LocalDate.parse(maxD, formatter).atStartOfDay(); 
-         
-        return ResponseEntity.ok(orderService.getOrdersBetweenOrderDates(minDate, maxDate));
-    }
-
-    @PostMapping("/add")
+    @PostMapping("/orders/")
     public ResponseEntity<Order> addOrder(@RequestBody Order order) {
-        Order newOrder = orderService.addOrder(order);
+        Order newOrder = orderService.saveOrder(order);
         return ResponseEntity.ok(newOrder);
     }
-
 
     @DeleteMapping("/orders/{id}")
     public ResponseEntity<String> deleteOrder(@PathVariable Integer id) {

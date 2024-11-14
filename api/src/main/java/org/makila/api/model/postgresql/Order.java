@@ -30,7 +30,6 @@ public class Order {
     @Column(name = "orderdate")
     private LocalDateTime orderDate;
    
-    // @OneToMany(mappedBy = "orderId", cascade = CascadeType.ALL)
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "order")
     private Set<OrderLine> items;
 }
