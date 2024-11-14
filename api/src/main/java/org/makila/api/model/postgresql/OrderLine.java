@@ -38,8 +38,8 @@ public class OrderLine {
     // @Setter
     //@ManyToOne(cascade = CascadeType.ALL)
     //@JoinColumn(foreignKey = @ForeignKey(name = "fk_orderid"), name="orderid", referencedColumnName = "orderid", columnDefinition = "int")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "orderid", referencedColumnName = "orderid", insertable = false, updatable = false, nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "orderid", nullable = false)
     private Order order;
     
 }

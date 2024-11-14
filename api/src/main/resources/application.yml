@@ -9,9 +9,8 @@ spring:
   
   data:
     mongodb:
-      host: localhost
-      port: 27017
-      database: sakila_mongo
+      uri: mongodb+srv://makila:pg2mongo@makila-demo.drtak.mongodb.net/?retryWrites=true&w=majority&appName=makila-demo
+      database: makila3
   
   jpa:
     hibernate:
