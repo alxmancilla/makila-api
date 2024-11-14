@@ -3,10 +3,15 @@ package org.makila.api.repository.postgresql;
 import org.makila.api.model.postgresql.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
+    @Query(value = "SELECT * FROM products WHERE title ~ :title", nativeQuery = true)
     List<Product> findByTitleContainingIgnoreCase(String title);
-    List<Product> findByReleaseYear(Integer year);
-   
+    @Query(value = "SELECT * FROM products WHERE title ~ :title", nativeQuery = true)
+    List<Product> searchProducts(@RequestParam String title);
 }
