@@ -32,8 +32,8 @@ public class OrderControllerMdb {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<OrdersEntity> getOrderById(@PathVariable String id) {
-        return ResponseEntity.ok(orderService.getOrderById(new ObjectId(id)));
+    public ResponseEntity<OrdersEntity> getOrderById(@PathVariable Integer id) {
+        return ResponseEntity.ok(orderService.getOrderById(id));
     }
 
     // @GetMapping("/btwndates/")
@@ -52,8 +52,8 @@ public class OrderControllerMdb {
     }
 
     @DeleteMapping("/orders/{id}")
-    public ResponseEntity<String> deleteOrder(@PathVariable String id) {
-        orderService.deleteOrder(new ObjectId(id));
+    public ResponseEntity<String> deleteOrder(@PathVariable Integer id) {
+        orderService.deleteOrder(id);
         return ResponseEntity.ok("Order deleted successfully");
     }
 }

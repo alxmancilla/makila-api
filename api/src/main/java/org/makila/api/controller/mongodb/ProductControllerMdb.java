@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/api/mdb/products")
+@RequestMapping("/api/mdb/product")
 @RequiredArgsConstructor
 public class ProductControllerMdb {
     private final ProductServiceMdb productService;
@@ -27,8 +27,8 @@ public class ProductControllerMdb {
     }
     
     @GetMapping("/{id}")
-    public ResponseEntity<ProductsEntity> getProductById(@PathVariable String id) {
-        return ResponseEntity.ok(productService.getProductById(new ObjectId(id)));
+    public ResponseEntity<ProductsEntity> getProductById(@PathVariable Integer id) {
+        return ResponseEntity.ok(productService.getProductById(id));
     }
     
     // @GetMapping("/search")

@@ -18,7 +18,7 @@ import org.bson.types.ObjectId;
 * Generated on 11/13/24
 
 */
-public interface ProductsRepositoryMdb extends MongoRepository<ProductsEntity, ObjectId> {
+public interface ProductsRepositoryMdb extends MongoRepository<ProductsEntity, Integer> {
     // List<ProductsEntity> findByTitleContainingIgnoreCase(String title);
     // List<ProductsEntity> findByReleaseYear(Integer year);
     

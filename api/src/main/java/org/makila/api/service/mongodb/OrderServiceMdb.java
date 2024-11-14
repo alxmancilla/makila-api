@@ -19,7 +19,7 @@ public class OrderServiceMdb {
         return orderRepository.findAll();
     }
 
-    public OrdersEntity getOrderById(ObjectId id) {
+    public OrdersEntity getOrderById(Integer id) {
         return orderRepository.findById(id)
             .orElseThrow(() -> new RuntimeException("Order not found"));
     }
@@ -33,7 +33,7 @@ public class OrderServiceMdb {
        return order;
     } 
 
-    public void deleteOrder(ObjectId id) {
+    public void deleteOrder(Integer id) {
         orderRepository.deleteById(id);
     }
 }

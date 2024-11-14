@@ -16,14 +16,14 @@ public class ProductServiceMdb {
     private final ProductsRepositoryMdb productRepository;
 
     public List<ProductsEntity> getProducts(String category) {
-        if (category != null) {
-            return productRepository.findAll();
-        } else {
+        if (category != null && category != "") {
             return productRepository.findByCategory(category);
+        } else {
+            return productRepository.findAll();
         }
     }
 
-    public ProductsEntity getProductById(ObjectId id) {
+    public ProductsEntity getProductById(Integer id) {
         return productRepository.findById(id)
             .orElseThrow(() -> new RuntimeException("Product not found"));
     }
