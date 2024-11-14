@@ -45,7 +45,7 @@ public class OrderService {
     
         order.getItems().forEach(item -> {
             item.setOrder(orderSavedToDB);
-            System.out.println("before save item: " + item);
+            //System.out.println("before save item: " + item);
        });
        this.orderLineRepository.saveAll(order.getItems());       
        return orderSavedToDB;
