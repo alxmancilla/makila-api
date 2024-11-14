@@ -11,31 +11,20 @@ import java.time.LocalDateTime;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "product_id")
-    private Long id;
-    
+    @Column(name = "prod_id", nullable = false)
+    private Integer id;
+    @Column(name = "category", nullable = false)
+    private Integer category;
+    @Column(name = "title", nullable = false, length = 50)
     private String title;
+    @Column(name = "actor", nullable = false, length = 50)
+    private String actor;
+    @Column(name = "price", nullable = false, precision = 12, scale = 2)
+    private BigDecimal price;
+    @Column(name = "special")
+    private Short special;
+    @Column(name = "common_prod_id", nullable = false)
+    private Integer commonProdId;
+    @Column(name = "description", columnDefinition = "text")
     private String description;
-    
-    @Column(name = "release_year")
-    private Integer releaseYear;
-    
-    @Column(name = "rental_duration")
-    private Integer rentalDuration;
-    
-    @Column(name = "rental_rate")
-    private BigDecimal rentalRate;
-    
-    private Integer length;
-    
-    @Column(name = "replacement_cost")
-    private BigDecimal replacementCost;
-    
-    private String rating;
-    
-    @Column(name = "special_features")
-    private String specialFeatures;
-    
-    @Column(name = "last_update")
-    private LocalDateTime lastUpdate;
 }

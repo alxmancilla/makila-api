@@ -26,11 +26,10 @@ public class ProductController {
     @GetMapping("/search")
     public ResponseEntity<List<Product>> searchProducts(@RequestParam String title) {
         return ResponseEntity.ok(productService.searchProducts(title));
-    }
-    
-    @GetMapping("/year/{year}")
-    public ResponseEntity<List<Product>> getProductsByYear(@PathVariable Integer year) {
-        return ResponseEntity.ok(productService.getProductsByYear(year));
-    }
-    
+    }    
+
+    @GetMapping("/category")
+    public ResponseEntity<List<Product>> searchProductsByCategory(@RequestParam Integer category) {
+        return ResponseEntity.ok(productService.searchProductsByCategory(category));
+    }    
 }
