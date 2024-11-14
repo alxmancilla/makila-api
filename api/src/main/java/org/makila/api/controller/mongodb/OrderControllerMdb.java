@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/api/mdb/orders")
+@RequestMapping("/api/mdb/order")
 @RequiredArgsConstructor
 public class OrderControllerMdb {
     private final OrderServiceMdb orderService;
@@ -45,13 +45,13 @@ public class OrderControllerMdb {
     //     return ResponseEntity.ok(orderService.getOrdersBetweenOrderDates(minDate, maxDate));
     // }
 
-    @PostMapping("/order")
+    @PostMapping
     public ResponseEntity<OrdersEntity> saveProduct(@RequestBody OrdersEntity order) {
         OrdersEntity newOrder = orderService.saveOrder(order);
         return ResponseEntity.ok(newOrder);
     }
 
-    @DeleteMapping("/orders/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteOrder(@PathVariable Integer id) {
         orderService.deleteOrder(id);
         return ResponseEntity.ok("Order deleted successfully");
