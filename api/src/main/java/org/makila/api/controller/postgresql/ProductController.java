@@ -12,7 +12,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/products")
+@RequestMapping("/api/pg/product")
 @RequiredArgsConstructor
 public class ProductController {
     private final ProductService productService;
