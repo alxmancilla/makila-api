@@ -17,6 +17,6 @@ import org.bson.types.ObjectId;
 * Generated on 11/13/24
 
 */ 
-public interface OrdersRepository extends MongoRepository<OrdersEntity, ObjectId> {
-    List<OrdersEntity> findOrdersBetweenOrderDates(LocalDateTime minDate, LocalDateTime maxDate);
+public interface OrdersRepositoryMdb extends MongoRepository<OrdersEntity, ObjectId> {
+    // List<OrdersEntity> findOrdersBetweenOrderDates(LocalDateTime minDate, LocalDateTime maxDate);
 }

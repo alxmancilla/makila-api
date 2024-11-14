@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.makila.api.model.mongodb.ProductsEntity;
-import org.makila.api.service.mongodb.ProductService;
+import org.makila.api.service.mongodb.ProductServiceMdb;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/mdb/products")
 @RequiredArgsConstructor
 public class ProductControllerMdb {
-    private final ProductService productService;
+    private final ProductServiceMdb productService;
 
     @GetMapping
     public ResponseEntity<List<ProductsEntity>> getProducts(@RequestParam(required = false) String category) {
@@ -31,18 +31,18 @@ public class ProductControllerMdb {
         return ResponseEntity.ok(productService.getProductById(new ObjectId(id)));
     }
     
-    @GetMapping("/search")
-    public ResponseEntity<List<ProductsEntity>> searchProducts(@RequestParam String title) {
-        return ResponseEntity.ok(productService.searchProducts(title));
-    }
+    // @GetMapping("/search")
+    // public ResponseEntity<List<ProductsEntity>> searchProducts(@RequestParam String title) {
+    //     return ResponseEntity.ok(productService.searchProducts(title));
+    // }
     
-    @GetMapping("/year/{year}")
-    public ResponseEntity<List<ProductsEntity>> getProductsByYear(@PathVariable Integer year) {
-        return ResponseEntity.ok(productService.getProductsByYear(year));
-    }
+    // @GetMapping("/year/{year}")
+    // public ResponseEntity<List<ProductsEntity>> getProductsByYear(@PathVariable Integer year) {
+    //     return ResponseEntity.ok(productService.getProductsByYear(year));
+    // }
     
-    @GetMapping("/rental-rate")
-    public ResponseEntity<List<ProductsEntity>> getProductsWithinRentalRate(@RequestParam Double maxRate) {
-        return ResponseEntity.ok(productService.getProductsWithinRentalRate(maxRate));
-    }
+    // @GetMapping("/rental-rate")
+    // public ResponseEntity<List<ProductsEntity>> getProductsWithinRentalRate(@RequestParam Double maxRate) {
+    //     return ResponseEntity.ok(productService.getProductsWithinRentalRate(maxRate));
+    // }
 }

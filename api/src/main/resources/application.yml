@@ -10,6 +10,7 @@ spring:
   data:
     mongodb:
       uri: mongodb+srv://makila:pg2mongo@makila-demo.drtak.mongodb.net/?retryWrites=true&w=majority&appName=makila-demo
+      database: makila3
   
   jpa:
     hibernate:

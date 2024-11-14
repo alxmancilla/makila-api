@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.makila.api.model.mongodb.OrdersEntity;
-import org.makila.api.service.mongodb.OrderService;
+import org.makila.api.service.mongodb.OrderServiceMdb;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +24,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/mdb/orders")
 @RequiredArgsConstructor
 public class OrderControllerMdb {
-    private final OrderService orderService;
+    private final OrderServiceMdb orderService;
 
     @GetMapping
     public ResponseEntity<List<OrdersEntity>> getAllOrders() {
@@ -36,14 +36,14 @@ public class OrderControllerMdb {
         return ResponseEntity.ok(orderService.getOrderById(new ObjectId(id)));
     }
 
-    @GetMapping("/btwndates/")
-    public ResponseEntity<List<OrdersEntity>> getOrdersBetweeOrderDates(@RequestParam(value = "minDate", defaultValue = "2004-01-01") String minD,@RequestParam(value = "maxDate", defaultValue = "2004-01-01") String maxD ) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); 
-        LocalDateTime minDate = LocalDate.parse(minD, formatter).atStartOfDay(); 
-        LocalDateTime maxDate = LocalDate.parse(maxD, formatter).atStartOfDay(); 
+    // @GetMapping("/btwndates/")
+    // public ResponseEntity<List<OrdersEntity>> getOrdersBetweeOrderDates(@RequestParam(value = "minDate", defaultValue = "2004-01-01") String minD,@RequestParam(value = "maxDate", defaultValue = "2004-01-01") String maxD ) {
+    //     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); 
+    //     LocalDateTime minDate = LocalDate.parse(minD, formatter).atStartOfDay(); 
+    //     LocalDateTime maxDate = LocalDate.parse(maxD, formatter).atStartOfDay(); 
          
-        return ResponseEntity.ok(orderService.getOrdersBetweenOrderDates(minDate, maxDate));
-    }
+    //     return ResponseEntity.ok(orderService.getOrdersBetweenOrderDates(minDate, maxDate));
+    // }
 
     @PostMapping("/order")
     public ResponseEntity<OrdersEntity> saveProduct(@RequestBody OrdersEntity order) {

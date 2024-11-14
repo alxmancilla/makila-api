@@ -1,7 +1,7 @@
 package org.makila.api.service.mongodb;
 
 import org.makila.api.model.mongodb.OrdersEntity;
-import org.makila.api.repository.mongodb.OrdersRepository;
+import org.makila.api.repository.mongodb.OrdersRepositoryMdb;
 import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 
@@ -12,8 +12,8 @@ import org.bson.types.ObjectId;
 
 @Service
 @RequiredArgsConstructor
-public class OrderService {
-    private final OrdersRepository orderRepository;
+public class OrderServiceMdb {
+    private final OrdersRepositoryMdb orderRepository;
 
     public List<OrdersEntity> getAllOrders() {
         return orderRepository.findAll();
@@ -24,9 +24,9 @@ public class OrderService {
             .orElseThrow(() -> new RuntimeException("Order not found"));
     }
 
-    public List<OrdersEntity> getOrdersBetweenOrderDates(LocalDateTime minDate, LocalDateTime maxDate) {
-        return orderRepository.findOrdersBetweenOrderDates(minDate, maxDate);
-    }
+    // public List<OrdersEntity> getOrdersBetweenOrderDates(LocalDateTime minDate, LocalDateTime maxDate) {
+    //     return orderRepository.findOrdersBetweenOrderDates(minDate, maxDate);
+    // }
 
     public OrdersEntity saveOrder(OrdersEntity order) {
         order = orderRepository.save(order);
