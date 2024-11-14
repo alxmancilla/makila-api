@@ -8,7 +8,7 @@ public class OrderService {
     private EntityManager entityManager;
 
     public int getMaxOrderID() {
-        Query query = entityManager.createQuery("SELECT COUNT(u) FROM User u");
+        Query query = entityManager.createQuery("SELECT MAX(orderid) FROM Order o");
         Long count = (Long) query.getSingleResult();
         return count.intValue();
     }
