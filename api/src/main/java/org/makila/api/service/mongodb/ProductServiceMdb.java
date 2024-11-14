@@ -15,8 +15,8 @@ import lombok.RequiredArgsConstructor;
 public class ProductServiceMdb {
     private final ProductsRepositoryMdb productRepository;
 
-    public List<ProductsEntity> getProducts(String category) {
-        if (category != null && category != "") {
+    public List<ProductsEntity> getProducts(Integer category) {
+        if (category != null) {
             return productRepository.findByCategory(category);
         } else {
             return productRepository.findAll();

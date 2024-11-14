@@ -22,7 +22,7 @@ public class ProductControllerMdb {
     private final ProductServiceMdb productService;
 
     @GetMapping
-    public ResponseEntity<List<ProductsEntity>> getProducts(@RequestParam(required = false) String category) {
+    public ResponseEntity<List<ProductsEntity>> getProducts(@RequestParam(required = false) Integer category) {
         return ResponseEntity.ok(productService.getProducts(category));
     }
     

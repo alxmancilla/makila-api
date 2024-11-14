@@ -23,5 +23,5 @@ public interface ProductsRepositoryMdb extends MongoRepository<ProductsEntity, I
     // List<ProductsEntity> findByReleaseYear(Integer year);
     
     @Query("{ 'category' : ?0 }")
-    List<ProductsEntity> findByCategory(String category);
+    List<ProductsEntity> findByCategory(Integer category);
 }
