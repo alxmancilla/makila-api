@@ -10,27 +10,20 @@ import java.math.BigDecimal;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
-    
+    @Column(name = "prod_id", nullable = false)
+    private Integer id;
     @Column(name = "category", nullable = false)
-    private String category;
-
-    @Column(name = "title", nullable = false)
+    private Integer category;
+    @Column(name = "title", nullable = false, length = 50)
     private String title;
-
-    @Column(name = "actor")
+    @Column(name = "actor", nullable = false, length = 50)
     private String actor;
-
-    @Column(name = "price", precision = 10, scale = 2) // Specify precision and scale for decimals
+    @Column(name = "price", nullable = false, precision = 12, scale = 2)
     private BigDecimal price;
-
     @Column(name = "special")
-    private Integer special;
-
-    @Column(name = "commonProdId")
+    private Short special;
+    @Column(name = "common_prod_id", nullable = false)
     private Integer commonProdId;
-
-    @Column(name = "categoryname")
-    private String categoryName;
+    @Column(name = "description", columnDefinition = "text")
+    private String description;
 }

@@ -1,6 +1,7 @@
 package org.makila.api.repository.mongodb;
 
 
+import org.springframework.data.mongodb.repository.Aggregation;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.makila.api.model.mongodb.ProductsEntity;
@@ -19,7 +20,11 @@ import org.bson.types.ObjectId;
 
 */
 public interface ProductsRepositoryMdb extends MongoRepository<ProductsEntity, Integer> {
-    // List<ProductsEntity> findByTitleContainingIgnoreCase(String title);
+
+    @Aggregation(pipeline = {
+        "{ $search: { index: 'default', text: { query: ?0, path: 'title' } } }"
+    })
+    List<ProductsEntity> findByTitleContainingIgnoreCase(String title);
     // List<ProductsEntity> findByReleaseYear(Integer year);
     
     @Query("{ 'category' : ?0 }")

@@ -3,9 +3,14 @@ package org.makila.api.service.postgresql;
 import org.makila.api.model.postgresql.Product;
 import org.makila.api.repository.postgresql.ProductRepository;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import java.util.List;
 
 @Service
@@ -37,4 +42,5 @@ public class ProductService {
     public List<Product> getProductsByState(String state) {
         return productRepository.findByState(state);
     }
+    
 }

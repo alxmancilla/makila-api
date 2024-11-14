@@ -31,10 +31,10 @@ public class ProductControllerMdb {
         return ResponseEntity.ok(productService.getProductById(id));
     }
     
-    // @GetMapping("/search")
-    // public ResponseEntity<List<ProductsEntity>> searchProducts(@RequestParam String title) {
-    //     return ResponseEntity.ok(productService.searchProducts(title));
-    // }
+    @GetMapping("/search")
+    public ResponseEntity<List<ProductsEntity>> searchProducts(@RequestParam String title) {
+        return ResponseEntity.ok(productService.searchProducts(title));
+    }
     
     // @GetMapping("/year/{year}")
     // public ResponseEntity<List<ProductsEntity>> getProductsByYear(@PathVariable Integer year) {
