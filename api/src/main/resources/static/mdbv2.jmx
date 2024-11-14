@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
   <hashTree>
-    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="PostgreSQL Load Test">
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="MDB Load Test">
       <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments">
@@ -24,7 +24,7 @@
       </elementProp>
     </TestPlan>
     <hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Find Order by ID" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Find Order by ID">
         <intProp name="ThreadGroup.num_threads">20</intProp>
         <intProp name="ThreadGroup.ramp_time">10</intProp>
         <stringProp name="ThreadGroup.duration">${duration}</stringProp>
@@ -45,7 +45,7 @@
           <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="orderId - Random">
             <stringProp name="variableName">orderId</stringProp>
             <stringProp name="outputFormat"></stringProp>
-            <stringProp name="minimumValue">1</stringProp>
+            <stringProp name="minimumValue">2</stringProp>
             <stringProp name="maximumValue">100</stringProp>
             <stringProp name="randomSeed"></stringProp>
             <boolProp name="perThread">false</boolProp>
@@ -55,7 +55,7 @@
             <stringProp name="HTTPSampler.domain">localhost</stringProp>
             <stringProp name="HTTPSampler.port">8080</stringProp>
             <stringProp name="HTTPSampler.protocol">http</stringProp>
-            <stringProp name="HTTPSampler.path">/api/pg/order/${orderId}</stringProp>
+            <stringProp name="HTTPSampler.path">/api/mdb/order/${orderId}</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
             <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
@@ -66,7 +66,7 @@
           <hashTree/>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Create Order" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Create Order">
         <intProp name="ThreadGroup.num_threads">10</intProp>
         <intProp name="ThreadGroup.ramp_time">5</intProp>
         <stringProp name="ThreadGroup.duration">${duration}</stringProp>
@@ -79,16 +79,16 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
           <boolProp name="LoopController.continue_forever">true</boolProp>
           <intProp name="LoopController.loops">-1</intProp>
         </LoopController>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="createOrder" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="createOrder">
             <stringProp name="HTTPSampler.domain">localhost</stringProp>
             <stringProp name="HTTPSampler.port">8080</stringProp>
             <stringProp name="HTTPSampler.protocol">http</stringProp>
-            <stringProp name="HTTPSampler.path">/api/pg/order/</stringProp>
+            <stringProp name="HTTPSampler.path">/api/mdb/order</stringProp>
             <stringProp name="HTTPSampler.method">POST</stringProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
             <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
@@ -96,7 +96,48 @@
               <collectionProp name="Arguments.arguments">
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value">{&quot;customerId&quot;:14771,&quot;netAmount&quot;:256.00,&quot;tax&quot;:21.12,&quot;totalAmount&quot;:277.12,&quot;orderDate&quot;:&quot;2024-10-09T00:00:00&quot;,&quot;items&quot;:[{&quot;id&quot;:1,&quot;prodId&quot;:6879,&quot;quantity&quot;:1,&quot;orderDate&quot;:&quot;2024-10-09T00:00:00&quot;}]}</stringProp>
+                  <stringProp name="Argument.value">{&#xd;
+   &quot;orderdate&quot;: &quot;2004-01-26T18:00:00&quot;,&#xd;
+   &quot;customerid&quot;: 7888,&#xd;
+   &quot;netamount&quot;: 313.24,&#xd;
+   &quot;tax&quot;: 25.84,&#xd;
+   &quot;totalamount&quot;: 339.08,&#xd;
+   &quot;orderlines&quot;: [&#xd;
+       {&#xd;
+           &quot;prodId&quot;: 9117,&#xd;
+           &quot;quantity&quot;: 1&#xd;
+       },&#xd;
+       {&#xd;
+           &quot;prodId&quot;: 3353,&#xd;
+           &quot;quantity&quot;: 3&#xd;
+       },&#xd;
+       {&#xd;
+           &quot;prodId&quot;: 2778,&#xd;
+           &quot;quantity&quot;: 2&#xd;
+       },&#xd;
+       {&#xd;
+           &quot;prodId&quot;: 4774,&#xd;
+           &quot;quantity&quot;: 2&#xd;
+       },&#xd;
+       {&#xd;
+           &quot;prodId&quot;: 3648,&#xd;
+           &quot;quantity&quot;: 2&#xd;
+       },&#xd;
+       {&#xd;
+           &quot;prodId&quot;: 9523,&#xd;
+           &quot;quantity&quot;: 3&#xd;
+       },&#xd;
+       {&#xd;
+           &quot;prodId&quot;: 6358,&#xd;
+           &quot;quantity&quot;: 3&#xd;
+       },&#xd;
+       {&#xd;
+           &quot;prodId&quot;: 1417,&#xd;
+           &quot;quantity&quot;: 2&#xd;
+       }&#xd;
+   ]&#xd;
+}&#xd;
+</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                 </elementProp>
               </collectionProp>
@@ -104,12 +145,6 @@
           </HTTPSamplerProxy>
           <hashTree/>
         </hashTree>
-        <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Think Time">
-          <intProp name="ActionProcessor.action">1</intProp>
-          <intProp name="ActionProcessor.target">0</intProp>
-          <stringProp name="ActionProcessor.duration">0</stringProp>
-        </TestAction>
-        <hashTree/>
       </hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Find Product by ID">
         <intProp name="ThreadGroup.num_threads">15</intProp>
@@ -142,7 +177,7 @@
             <stringProp name="HTTPSampler.domain">localhost</stringProp>
             <stringProp name="HTTPSampler.port">8080</stringProp>
             <stringProp name="HTTPSampler.protocol">http</stringProp>
-            <stringProp name="HTTPSampler.path">/api/products/${pid}</stringProp>
+            <stringProp name="HTTPSampler.path">/api/mdb/product/${pid}</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
             <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
@@ -222,7 +257,7 @@
             <boolProp name="perThread">false</boolProp>
           </RandomVariableConfig>
           <hashTree/>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="searchByTitle">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="searchByTitle" enabled="true">
             <stringProp name="HTTPSampler.domain">localhost</stringProp>
             <stringProp name="HTTPSampler.port">8080</stringProp>
             <stringProp name="HTTPSampler.protocol">http</stringProp>
@@ -294,9 +329,9 @@
           <value class="SampleSaveConfiguration">
             <time>true</time>
             <latency>true</latency>
-            <timestamp>true</timestamp>
+            <timestamp>false</timestamp>
             <success>true</success>
-            <label>true</label>
+            <label>false</label>
             <code>true</code>
             <message>true</message>
             <threadName>true</threadName>
@@ -307,16 +342,15 @@
             <responseData>false</responseData>
             <samplerData>false</samplerData>
             <xml>false</xml>
-            <fieldNames>true</fieldNames>
+            <fieldNames>false</fieldNames>
             <responseHeaders>false</responseHeaders>
             <requestHeaders>false</requestHeaders>
             <responseDataOnError>false</responseDataOnError>
-            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
             <assertionsResultsToSave>0</assertionsResultsToSave>
             <bytes>true</bytes>
             <sentBytes>true</sentBytes>
             <url>true</url>
-            <threadCounts>true</threadCounts>
             <idleTime>true</idleTime>
             <connectTime>true</connectTime>
           </value>
@@ -324,7 +358,7 @@
         <stringProp name="filename">/Applications/apache-jmeter-5.5/bin/test.jtl</stringProp>
       </ResultCollector>
       <hashTree/>
-      <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="View Results in Table">
+      <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="View Results in Table" enabled="true">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
