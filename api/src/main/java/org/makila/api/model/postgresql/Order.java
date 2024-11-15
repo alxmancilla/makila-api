@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.makila.api.model.postgresql.OrderLine;
 
-
 @Data
 @Entity
 @Table(name = "orders")
@@ -40,4 +39,63 @@ public class Order {
         items.add(item);
         item.setOrder(this);
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
+    }
+
+    public BigDecimal getNetAmount() {
+        return netAmount;
+    }
+
+    public void setNetAmount(BigDecimal netAmount) {
+        this.netAmount = netAmount;
+    }
+
+    public BigDecimal getTax() {
+        return tax;
+    }
+
+    public void setTax(BigDecimal tax) {
+        this.tax = tax;
+    }
+
+    public BigDecimal getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(BigDecimal totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public LocalDateTime getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(LocalDateTime orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public List<OrderLine> getItems() {
+        return items;
+    }
+
+    public void setItems(List<OrderLine> items) {
+        this.items = items;
+    }
+
+    
+
 }

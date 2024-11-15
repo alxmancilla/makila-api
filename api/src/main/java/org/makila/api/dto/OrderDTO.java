@@ -1,12 +1,10 @@
 package org.makila.api.dto;
 
-import lombok.Data;
-import java.util.List;
-
-import jakarta.persistence.Column;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
+
+import lombok.Data;
 
 @Data
 public class OrderDTO {
@@ -16,6 +14,43 @@ public class OrderDTO {
     private BigDecimal totalAmount;
     private LocalDateTime orderDate;
     private List<OrderItemDTO> items;
+
+    public Integer getCustomerId() {
+        return customerId;
+    }
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
+    }
+    public BigDecimal getNetAmount() {
+        return netAmount;
+    }
+    public void setNetAmount(BigDecimal netAmount) {
+        this.netAmount = netAmount;
+    }
+    public BigDecimal getTax() {
+        return tax;
+    }
+    public void setTax(BigDecimal tax) {
+        this.tax = tax;
+    }
+    public BigDecimal getTotalAmount() {
+        return totalAmount;
+    }
+    public void setTotalAmount(BigDecimal totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+    public LocalDateTime getOrderDate() {
+        return orderDate;
+    }
+    public void setOrderDate(LocalDateTime orderDate) {
+        this.orderDate = orderDate;
+    }
+    public List<OrderItemDTO> getItems() {
+        return items;
+    }
+    public void setItems(List<OrderItemDTO> items) {
+        this.items = items;
+    }
 
     
 

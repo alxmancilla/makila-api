@@ -13,6 +13,18 @@ Create a multi cluster for Postgres using AWS RDS. 3 instances deployed in multi
  
 Create a 3-member replica set deployed in a single region cluster using MongoDB Atlas in AWS. See [Create a Cluster](https://www.mongodb.com/docs/atlas/tutorial/create-new-cluster/)
 
+Set up your local machine or an EC2 instance with following items:
+
+Install JDK 17
+```bash
+brew install openjdk@17
+```
+
+Instal Maven
+```bash
+brew install maven
+```
+
 Download dataset from [Dell DVD Store Database Test Suite](https://linux.dell.com/dvdstore/)
 
 ```bash
@@ -34,10 +46,16 @@ Clone this repository:
 git clone https://github.com/alxmancilla/makila-api.git
 ```
 
+Set up env variables required on YAML file ``` api/src/main/resources/application.yml ```
 
 Build jar file
 
 ```bash
-java -jar mstore-api.jar
+mvn clean package
+```
+
+Run jar file
+```bash
+java -jar target/mstore-api-1.0.jar 
 ```
 
