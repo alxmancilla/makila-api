@@ -1,19 +1,15 @@
 spring:
   name: api
-  autoconfigure:
-    exclude:
-    - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
   datasource:
     postgresql:
-      url: jdbc:postgresql://makila-postgres.cymtbjk7fwn8.us-east-1.rds.amazonaws.com:5432/Delistore 
-      username: makila
-      password: pg2mongo
+      url: ${PG_DB_URL}
+      username: ${PG_DB_USER}
+      password: ${PG_DB_PWD}
       driver-class-name: org.postgresql.Driver
-      initialize: false
   
   data:
     mongodb:
-      uri: mongodb+srv://makila:pg2mongo@makila-demo.drtak.mongodb.net/?retryWrites=true&w=majority&appName=makila-demo
+      uri: ${MDB_DB_URI}
       database: makila3
   
   jpa:
