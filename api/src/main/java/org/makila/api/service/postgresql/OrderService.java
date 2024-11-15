@@ -2,6 +2,7 @@ package org.makila.api.service.postgresql;
 
 import org.makila.api.model.postgresql.Order;
 import org.makila.api.model.postgresql.OrderLine;
+import org.makila.api.repository.postgresql.CustomerRepository;
 import org.makila.api.repository.postgresql.OrderLineRepository;
 import org.makila.api.repository.postgresql.OrderRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,11 +25,14 @@ import java.util.Iterator;
 import java.util.Set;
 
 @Service
-@RequiredArgsConstructor
 public class OrderService {
-    @Autowired  
     private OrderRepository orderRepository;
 
+    @Autowired
+    public OrderService(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
+    }
+    
     public List<Order> getAllOrders() {
         return orderRepository.findAll();
     }

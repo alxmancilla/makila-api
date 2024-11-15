@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
+import org.postgresql.ds.PGSimpleDataSource;
 import javax.sql.DataSource;
 
 @Configuration
@@ -18,7 +18,6 @@ import javax.sql.DataSource;
 )
 public class PostgreSQLConfig {
 
-    @Primary
     @Bean
     @ConfigurationProperties("spring.datasource.postgresql")
     public DataSourceProperties postgresDataSourceProperties() {
@@ -30,6 +29,7 @@ public class PostgreSQLConfig {
     public DataSource postgresDataSource() {
         return postgresDataSourceProperties()
             .initializeDataSourceBuilder()
+            .type(org.postgresql.ds.PGSimpleDataSource.class)
             .build();
     }
 }

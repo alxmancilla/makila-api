@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.makila.api.model.mongodb.ProductsEntity;
+import org.makila.api.service.mongodb.OrderServiceMdb;
 import org.makila.api.service.mongodb.ProductServiceMdb;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,10 +19,14 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/mdb/product")
-@RequiredArgsConstructor
 public class ProductControllerMdb {
     private final ProductServiceMdb productService;
 
+    @Autowired
+    public ProductControllerMdb(ProductServiceMdb productService) {
+        this.productService = productService;
+    }   
+   
     @GetMapping
     public ResponseEntity<List<ProductsEntity>> getProducts(@RequestParam(required = false) Integer category) {
         return ResponseEntity.ok(productService.getProducts(category));
