@@ -15,9 +15,9 @@ Create a 3-member replica set deployed in a single region cluster using MongoDB 
 
 Download dataset from [Dell DVD Store Database Test Suite](https://linux.dell.com/dvdstore/)
 
-wget https://linux.dell.com/dvdstore/ds21_postgresql.tar.gz
+# wget https://linux.dell.com/dvdstore/ds21_postgresql.tar.gz
 or
-curl -O https://linux.dell.com/dvdstore/ds21_postgresql.tar.gz
+# curl -O https://linux.dell.com/dvdstore/ds21_postgresql.tar.gz
 
 Install Relational Migrator. See [Relationa Migrator installation guide](https://www.mongodb.com/docs/relational-migrator/installation/)
 
@@ -26,10 +26,10 @@ Install Relational Migrator. See [Relationa Migrator installation guide](https:/
 
 Clone this repository:
 
-git clone 
-
+# git clone https://github.com/alxmancilla/makila-api.git
 
 
 Build jar file
 
+# java -jar mstore-api.jar
 
