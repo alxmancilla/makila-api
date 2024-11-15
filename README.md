@@ -46,7 +46,15 @@ Clone this repository:
 git clone https://github.com/alxmancilla/makila-api.git
 ```
 
-Set up env variables required on YAML file ``` api/src/main/resources/application.yml ```
+Import a new project into Relational Migrator using file ```api/src/main/resources/static/Mstore.relmig```. See [Import a project](https://www.mongodb.com/docs/relational-migrator/projects/import-project/)
+
+Open Mstore project within Relational Migrator and visualize Relational and Document data models. Learn [schema design patterns in MongoDB] (https://www.mongodb.com/docs/manual/data-modeling/design-patterns/) . 
+
+Migrate data from PostgreSQL to MongoDB by creating a Snapshot job in Relational Migrator. See [create a sync job](https://www.mongodb.com/docs/relational-migrator/jobs/sync-jobs/)
+
+
+Set up env variables required on YAML file ```api/src/main/resources/application.yml```
+
 
 Build jar file
 
@@ -59,3 +67,30 @@ Run jar file
 java -jar target/mstore-api-1.0.jar 
 ```
 
+
+Test REST API for PostgreSQL:
+
+Get an order by id:
+```bash
+curl -v localhost:8080/api/pg/order/10 
+```
+
+Insert an order:
+```bash
+curl -X POST localhost:8080/api/pg/order/ -H 'Content-type:application/json' -d '{"customerId":14771,"netAmount":256.00,"tax":21.12,"totalAmount":277.12,"orderDate":"2024-10-09T00:00:00","items":[{"id":1,"prodId":6879,"quantity":1,"orderDate":"2024-10-09T00:00:00"}]}'
+```
+
+
+To test REST API for MongoDB:
+
+Test REST API for PostgreSQL:
+
+Get an order by id:
+```bash
+ curl -v localhost:8080/api/mdb/order/10 
+```
+
+Insert an order:
+```bash
+curl -X POST localhost:8080/api/mdb/order/ -H 'Content-type:application/json' -d '{"customerId":14771,"netAmount":256.00,"tax":21.12,"totalAmount":277.12,"orderDate":"2024-10-09T00:00:00","items":[{"id":1,"prodId":6879,"quantity":1,"orderDate":"2024-10-09T00:00:00"}]}'
+```
