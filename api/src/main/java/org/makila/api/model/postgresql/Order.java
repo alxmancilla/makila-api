@@ -6,6 +6,8 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import org.makila.api.model.postgresql.OrderLine;
+
 
 @Data
 @Entity

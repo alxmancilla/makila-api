@@ -2,6 +2,8 @@ package org.makila.api.service.postgresql;
 
 import org.makila.api.model.postgresql.Order;
 import org.makila.api.model.postgresql.OrderLine;
+import org.makila.api.dto.OrderDTO;
+import org.makila.api.dto.OrderItemDTO;
 import org.makila.api.repository.postgresql.CustomerRepository;
 import org.makila.api.repository.postgresql.OrderRepository;
 import lombok.RequiredArgsConstructor;
