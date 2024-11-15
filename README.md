@@ -25,9 +25,9 @@ While Migrating Dellstore to MongoDB, we ran into a variety of bumps along the w
 
 ## Setup
 
-__1. Create a multi cluster for Postgres using AWS RDS. 3 instances deployed in multiple AZ. See [Creating a Multi-AZ DB cluster for Amazon RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/create-multi-az-db-cluster.html).__
+__1. Create a multi-AZ DB cluster, M5 class (2vCPUs and 8GB RAM), for Postgres using AWS RDS. 3 instances deployed in multiple AZ. See [Creating a Multi-AZ DB cluster for Amazon RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/create-multi-az-db-cluster.html).__
  
-__2. Create a 3-member replica set deployed in a single region cluster using MongoDB Atlas in AWS. See [Create a Cluster](https://www.mongodb.com/docs/atlas/tutorial/create-new-cluster/).__
+__2. Create a single region cluster, M30 instance type (2vCPUs and 8GB RAM), using MongoDB Atlas in AWS. See [Create a Cluster](https://www.mongodb.com/docs/atlas/tutorial/create-new-cluster/).__
 
 __3. Setup your local machine an install following tools:__
 
@@ -139,5 +139,6 @@ jmeter.sh -n -t api/src/main/resources/static/mdbLoadTesting.jmx -l mdb_results
 
 Open pg_results.jtl and mdb_results.jtl files and compare results.
 
+In our testing MongoDB had 8x more throughput using the same data set and infrastructure
 
 
