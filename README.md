@@ -65,22 +65,22 @@ __4. Install Relational Migrator. See [Relationa Migrator installation guide](ht
 
 ## Instructions
 
-__1. Clone this repository:
+__1. Clone this repository:__
 
 ```bash
 git clone https://github.com/alxmancilla/makila-api.git
 ```
 
-__2. Set up environment variables required on YAML file ```api/src/main/resources/application.yml```
+__2. Set up environment variables required on YAML file ```api/src/main/resources/application.yml```__
 
-__3. Import a new project into Relational Migrator using file ```api/src/main/resources/static/Mstore.relmig```. See [Import a project](https://www.mongodb.com/docs/relational-migrator/projects/import-project/)
+__3. Import a new project into Relational Migrator using file ```api/src/main/resources/static/Mstore.relmig```. See [Import a project](https://www.mongodb.com/docs/relational-migrator/projects/import-project/)__
 
-__4. Open Mstore project within Relational Migrator and visualize Relational and Document data models. Learn [schema design patterns in MongoDB] (https://www.mongodb.com/docs/manual/data-modeling/design-patterns/) . 
+__4. Open Mstore project within Relational Migrator and visualize Relational and Document data models. Learn [schema design patterns in MongoDB] (https://www.mongodb.com/docs/manual/data-modeling/design-patterns/).__ 
 
-__5. Migrate data from PostgreSQL to MongoDB by creating a Snapshot job in Relational Migrator. See [create a sync job](https://www.mongodb.com/docs/relational-migrator/jobs/sync-jobs/)
+__5. Migrate data from PostgreSQL to MongoDB by creating a Snapshot job in Relational Migrator. See [create a sync job](https://www.mongodb.com/docs/relational-migrator/jobs/sync-jobs/).__
 
 
-__6. Compile project and generate jar file
+__6.Compile project and generate jar file__
 
 Execute ```maven``` command inside api folder
 ```bash
@@ -94,7 +94,7 @@ java -jar target/mstore-api-1.0.jar
 ```
 
 
-__7. Test REST API 
+__7.Test REST API__ 
 
 * For PostgreSQL:
 
