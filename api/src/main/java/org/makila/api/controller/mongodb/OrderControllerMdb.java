@@ -8,6 +8,8 @@ import java.util.List;
 import org.bson.types.ObjectId;
 import org.makila.api.model.mongodb.OrdersEntity;
 import org.makila.api.service.mongodb.OrderServiceMdb;
+import org.makila.api.service.postgresql.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,9 +24,14 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/mdb/order")
-@RequiredArgsConstructor
 public class OrderControllerMdb {
+
     private final OrderServiceMdb orderService;
+
+    @Autowired
+    public OrderControllerMdb(OrderServiceMdb orderService) {
+        this.orderService = orderService;
+    }    
 
     @GetMapping
     public ResponseEntity<List<OrdersEntity>> getAllOrders() {

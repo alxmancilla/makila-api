@@ -3,7 +3,9 @@ package org.makila.api.service.mongodb;
 import java.util.List;
 
 import org.makila.api.model.mongodb.ProductsEntity;
+import org.makila.api.repository.mongodb.OrdersRepositoryMdb;
 import org.makila.api.repository.mongodb.ProductsRepositoryMdb;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.bson.types.ObjectId;
 
@@ -11,9 +13,13 @@ import org.bson.types.ObjectId;
 import lombok.RequiredArgsConstructor;
 
 @Service
-@RequiredArgsConstructor
 public class ProductServiceMdb {
     private final ProductsRepositoryMdb productRepository;
+
+    @Autowired
+    public ProductServiceMdb(ProductsRepositoryMdb productRepository) {
+        this.productRepository = productRepository;
+    }
 
     public List<ProductsEntity> getProducts(Integer category) {
         if (category != null) {

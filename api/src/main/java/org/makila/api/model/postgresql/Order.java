@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -30,6 +31,11 @@ public class Order {
     @Column(name = "orderdate")
     private LocalDateTime orderDate;
    
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
-    private Set<OrderLine> items;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderLine> items = new ArrayList<OrderLine>();
+
+    public void addItem(OrderLine item) {
+        items.add(item);
+        item.setOrder(this);
+    }
 }

@@ -2,6 +2,8 @@ package org.makila.api.service.mongodb;
 
 import org.makila.api.model.mongodb.OrdersEntity;
 import org.makila.api.repository.mongodb.OrdersRepositoryMdb;
+import org.makila.api.repository.postgresql.OrderRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 
@@ -11,10 +13,14 @@ import java.util.List;
 import org.bson.types.ObjectId;
 
 @Service
-@RequiredArgsConstructor
 public class OrderServiceMdb {
     private final OrdersRepositoryMdb orderRepository;
-
+    
+    @Autowired
+    public OrderServiceMdb(OrdersRepositoryMdb orderRepository) {
+        this.orderRepository = orderRepository;
+    }
+    
     public List<OrdersEntity> getAllOrders() {
         return orderRepository.findAll();
     }
