@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.makila</groupId>
-	<artifactId>api</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>mstore-api</artifactId>
+	<version>1.0</version>
 	<name>api</name>
-	<description>Makila API project</description>
+	<description>Mstore API project</description>
 	<url/>
 	<licenses>
 		<license/>
