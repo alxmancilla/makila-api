@@ -25,32 +25,32 @@ While Migrating Dellstore to MongoDB, we ran into a variety of bumps along the w
 
 ## Setup
 
-__1. Create a multi cluster for Postgres using AWS RDS. 3 instances deployed in multiple AZ. See [Creating a Multi-AZ DB cluster for Amazon RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/create-multi-az-db-cluster.html)
+__1. Create a multi cluster for Postgres using AWS RDS. 3 instances deployed in multiple AZ. See [Creating a Multi-AZ DB cluster for Amazon RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/create-multi-az-db-cluster.html).__
  
-__2. Create a 3-member replica set deployed in a single region cluster using MongoDB Atlas in AWS. See [Create a Cluster](https://www.mongodb.com/docs/atlas/tutorial/create-new-cluster/)
+__2. Create a 3-member replica set deployed in a single region cluster using MongoDB Atlas in AWS. See [Create a Cluster](https://www.mongodb.com/docs/atlas/tutorial/create-new-cluster/).__
 
-__3. Setup your local machine an install following tools:
+__3. Setup your local machine an install following tools:__
 
-. Install JDK 17
+* Install JDK 17
 ```bash
 brew install openjdk@17
 ```
 
-. Install Maven
+* Install Apache Maven
 ```bash
 brew install maven
 ```
-. Instal JMeter
+* Install Apache JMeter
 ```bash
 wget https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.6.3.tgz
 tar -xf apache-jmeter-5.6.3.tgz 
 ```
-Add JMeter to your PATH environment
+* Add JMeter to your PATH environment
 ```bash
 export PATH:$PATH:apache-jmeter-5.6.3/bin
 ```
 
-Download dataset from [Dell DVD Store Database Test Suite](https://linux.dell.com/dvdstore/)
+* Download dataset from [Dell DVD Store Database Test Suite](https://linux.dell.com/dvdstore/)
 
 ```bash
 wget https://linux.dell.com/dvdstore/ds21_postgresql.tar.gz
@@ -59,8 +59,11 @@ or
 ```bash
 curl -O https://linux.dell.com/dvdstore/ds21_postgresql.tar.gz
 ```
+* Import dataset into your PostgreSQL cluster.
 
-__4. Install Relational Migrator. See [Relationa Migrator installation guide](https://www.mongodb.com/docs/relational-migrator/installation/)
+
+
+__4. Install Relational Migrator. See [Relationa Migrator installation guide](https://www.mongodb.com/docs/relational-migrator/installation/).__
 
 
 ## Instructions
@@ -80,21 +83,21 @@ __4. Open Mstore project within Relational Migrator and visualize Relational and
 __5. Migrate data from PostgreSQL to MongoDB by creating a Snapshot job in Relational Migrator. See [create a sync job](https://www.mongodb.com/docs/relational-migrator/jobs/sync-jobs/).__
 
 
-__6.Compile project and generate jar file__
+__6. Compile project and generate jar file__
 
-Execute ```maven``` command inside api folder
+* Execute ```maven``` command inside api folder
 ```bash
 cd api
 mvn clean package
 ```
 
-Run jar file
+* Execute jar file
 ```bash
 java -jar target/mstore-api-1.0.jar 
 ```
 
 
-__7.Test REST API__ 
+__7. Test REST API__ 
 
 * For PostgreSQL:
 
@@ -107,7 +110,6 @@ Insert an order:
 ```bash
 curl -X POST localhost:8080/api/pg/order/ -H 'Content-type:application/json' -d '{"customerId":14771,"netAmount":256.00,"tax":21.12,"totalAmount":277.12,"orderDate":"2024-10-09T00:00:00","items":[{"id":1,"prodId":6879,"quantity":1,"orderDate":"2024-10-09T00:00:00"}]}'
 ```
-
 
 * For MongoDB:
 
