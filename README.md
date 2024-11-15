@@ -25,22 +25,22 @@ While Migrating Dellstore to MongoDB, we ran into a variety of bumps along the w
 
 ## Setup
 
-Create a multi cluster for Postgres using AWS RDS. 3 instances deployed in multiple AZ. See [Creating a Multi-AZ DB cluster for Amazon RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/create-multi-az-db-cluster.html)
+__1. Create a multi cluster for Postgres using AWS RDS. 3 instances deployed in multiple AZ. See [Creating a Multi-AZ DB cluster for Amazon RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/create-multi-az-db-cluster.html)
  
-Create a 3-member replica set deployed in a single region cluster using MongoDB Atlas in AWS. See [Create a Cluster](https://www.mongodb.com/docs/atlas/tutorial/create-new-cluster/)
+__2. Create a 3-member replica set deployed in a single region cluster using MongoDB Atlas in AWS. See [Create a Cluster](https://www.mongodb.com/docs/atlas/tutorial/create-new-cluster/)
 
-Setup your local machine an install following tools:
+__3. Setup your local machine an install following tools:
 
-Install JDK 17
+. Install JDK 17
 ```bash
 brew install openjdk@17
 ```
 
-Instal Maven
+. Install Maven
 ```bash
 brew install maven
 ```
-Instal JMeter
+. Instal JMeter
 ```bash
 wget https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.6.3.tgz
 tar -xf apache-jmeter-5.6.3.tgz 
@@ -60,30 +60,31 @@ or
 curl -O https://linux.dell.com/dvdstore/ds21_postgresql.tar.gz
 ```
 
-Install Relational Migrator. See [Relationa Migrator installation guide](https://www.mongodb.com/docs/relational-migrator/installation/)
+__4. Install Relational Migrator. See [Relationa Migrator installation guide](https://www.mongodb.com/docs/relational-migrator/installation/)
 
 
 ## Instructions
 
-Clone this repository:
+__1. Clone this repository:
 
 ```bash
 git clone https://github.com/alxmancilla/makila-api.git
 ```
 
-Import a new project into Relational Migrator using file ```api/src/main/resources/static/Mstore.relmig```. See [Import a project](https://www.mongodb.com/docs/relational-migrator/projects/import-project/)
+__2. Set up environment variables required on YAML file ```api/src/main/resources/application.yml```
 
-Open Mstore project within Relational Migrator and visualize Relational and Document data models. Learn [schema design patterns in MongoDB] (https://www.mongodb.com/docs/manual/data-modeling/design-patterns/) . 
+__3. Import a new project into Relational Migrator using file ```api/src/main/resources/static/Mstore.relmig```. See [Import a project](https://www.mongodb.com/docs/relational-migrator/projects/import-project/)
 
-Migrate data from PostgreSQL to MongoDB by creating a Snapshot job in Relational Migrator. See [create a sync job](https://www.mongodb.com/docs/relational-migrator/jobs/sync-jobs/)
+__4. Open Mstore project within Relational Migrator and visualize Relational and Document data models. Learn [schema design patterns in MongoDB] (https://www.mongodb.com/docs/manual/data-modeling/design-patterns/) . 
+
+__5. Migrate data from PostgreSQL to MongoDB by creating a Snapshot job in Relational Migrator. See [create a sync job](https://www.mongodb.com/docs/relational-migrator/jobs/sync-jobs/)
 
 
-Set up env variables required on YAML file ```api/src/main/resources/application.yml```
+__6. Compile project and generate jar file
 
-
-Build jar file
-
+Execute ```maven``` command inside api folder
 ```bash
+cd api
 mvn clean package
 ```
 
@@ -93,7 +94,9 @@ java -jar target/mstore-api-1.0.jar
 ```
 
 
-Test REST API for PostgreSQL:
+__7. Test REST API 
+
+* For PostgreSQL:
 
 Get an order by id:
 ```bash
@@ -106,9 +109,7 @@ curl -X POST localhost:8080/api/pg/order/ -H 'Content-type:application/json' -d 
 ```
 
 
-To test REST API for MongoDB:
-
-Test REST API for PostgreSQL:
+* For MongoDB:
 
 Get an order by id:
 ```bash
@@ -122,18 +123,19 @@ curl -X POST localhost:8080/api/mdb/order/ -H 'Content-type:application/json' -d
 
 ## Performance load testing 
 
-To run load testing for PostgreSQL:
+* To run it for PostgreSQL:
 ```bash
 jmeter.sh -n -t api/src/main/resources/static/pgLoadTesting.jmx -l pg_results.jtl
 ```
 
-To run load testing for PostgreSQL:
+* To run it for MongoDB:
 ```bash
 jmeter.sh -n -t api/src/main/resources/static/mdbLoadTesting.jmx -l mdb_results.jtl
 ```
 
-
 ## Results
+
 Open pg_results.jtl and mdb_results.jtl files and compare results.
+
 
 
