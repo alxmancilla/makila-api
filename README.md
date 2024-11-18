@@ -50,40 +50,56 @@ tar -xf apache-jmeter-5.6.3.tgz
 export PATH:$PATH:apache-jmeter-5.6.3/bin
 ```
 
-* Download dataset from [Dell DVD Store Database Test Suite](https://linux.dell.com/dvdstore/)
-
-```bash
-wget https://linux.dell.com/dvdstore/ds21_postgresql.tar.gz
-```
-or
-```bash
-curl -O https://linux.dell.com/dvdstore/ds21_postgresql.tar.gz
-```
-* Import dataset into your PostgreSQL cluster.
-
-
-
 __4. Install Relational Migrator. See [Relationa Migrator installation guide](https://www.mongodb.com/docs/relational-migrator/installation/).__
 
 
+__5. Original dataset was taken from [Dell DVD Store Database Test Suite](https://linux.dell.com/dvdstore/).__
+
 ## Instructions
 
-__1. Clone this repository:__
+__1. Clone this repository__
 
 ```bash
 git clone https://github.com/alxmancilla/makila-api.git
 ```
 
-__2. Set up environment variables required on YAML file ```api/src/main/resources/application.yml```__
+__2. Import dataset into your PostgreSQL cluster__
 
-__3. Import a new project into Relational Migrator using file ```api/src/main/resources/static/Mstore.relmig```. See [Import a project](https://www.mongodb.com/docs/relational-migrator/projects/import-project/)__
+* Create database
+```bash
+psql --host=postgres-server --username=postgres
+CREATE DATABASE dellstore;
+\c dellstore;
+\q
+```
 
-__4. Open Mstore project within Relational Migrator and visualize Relational and Document data models. Learn [schema design patterns in MongoDB] (https://www.mongodb.com/docs/manual/data-modeling/design-patterns/).__ 
+* Create tables
+```bash
+psql --host=postgres-server --username=postgres -d dellstore < dellstore_ddl.sql
+```
 
-__5. Migrate data from PostgreSQL to MongoDB by creating a Snapshot job in Relational Migrator. See [create a sync job](https://www.mongodb.com/docs/relational-migrator/jobs/sync-jobs/).__
+* Import dataset into database.
+```bash
+psql --host=postgres-server --username=postgres -d dellstore < dellstore_data.sql
+```
 
+__3. Set up environment variables used on YAML file ```api/src/main/resources/application.yml```__
 
-__6. Compile project and generate jar file__
+* Required environment variables.
+```bash
+export PG_DB_URL=jdbc:postgresql://postgres-server:5432/dellstore
+export PG_DB_USER=pguser
+export PG_DB_PWD=pgpwd
+export MDB_DB_URI="mongodb+srv://muser:mpwd@mongodb-server/mstore?retryWrites=true&w=majority&appName=mstore-demo"
+```
+
+__4. Import a new project into Relational Migrator using file ```api/src/main/resources/static/Mstore.relmig```. See [Import a project](https://www.mongodb.com/docs/relational-migrator/projects/import-project/)__
+
+__5. Open Mstore project within Relational Migrator and visualize Relational and Document data models. Learn [schema design patterns in MongoDB] (https://www.mongodb.com/docs/manual/data-modeling/design-patterns/)__ 
+
+__6. Migrate data from PostgreSQL to MongoDB by creating a Snapshot job in Relational Migrator. See [create a sync job](https://www.mongodb.com/docs/relational-migrator/jobs/sync-jobs/)__
+
+__7. Compile project and generate jar file__
 
 * Execute ```maven``` command inside api folder
 ```bash
@@ -95,7 +111,6 @@ mvn clean package
 ```bash
 java -jar target/mstore-api-1.0.jar 
 ```
-
 
 __7. Test REST API__ 
 
