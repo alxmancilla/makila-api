@@ -127,12 +127,12 @@ curl -X POST localhost:8080/api/mdb/order/ -H 'Content-type:application/json' -d
 
 * To run it for PostgreSQL:
 ```bash
-jmeter.sh -n -t api/src/main/resources/static/pgLoadTesting.jmx -l pg_results.jtl
+jmeter.sh -n -t jmeter/pgLoadTesting.jmx -l pg_results.jtl
 ```
 
 * To run it for MongoDB:
 ```bash
-jmeter.sh -n -t api/src/main/resources/static/mdbLoadTesting.jmx -l mdb_results.jtl
+jmeter.sh -n -t jmeter/mdbLoadTesting.jmx -l mdb_results.jtl
 ```
 
 ## Results
