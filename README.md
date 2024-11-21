@@ -25,9 +25,11 @@ While Migrating Dellstore to MongoDB, we ran into a variety of bumps along the w
 
 ## Setup
 
-__1. Create a multi-AZ DB cluster, M5 class (2vCPUs and 8GB RAM), for Postgres using AWS RDS. 3 instances deployed in multiple AZ. See [Creating a Multi-AZ DB cluster for Amazon RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/create-multi-az-db-cluster.html).__
+__1. Create a multi-AZ DB cluster, M5 class (2vCPUs and 8GB RAM), for Postgres using AWS RDS. 3 instances deployed in multiple AZ.__
+* See [Creating a Multi-AZ DB cluster for Amazon RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/create-multi-az-db-cluster.html).
  
-__2. Create a single region cluster, M30 instance type (2vCPUs and 8GB RAM), using MongoDB Atlas in AWS. See [Create a Cluster](https://www.mongodb.com/docs/atlas/tutorial/create-new-cluster/).__
+__2. Create a single region cluster, M30 instance type (2vCPUs and 8GB RAM), using MongoDB Atlas in AWS.__
+* See [Create a Cluster](https://www.mongodb.com/docs/atlas/tutorial/create-new-cluster/).
 
 __3. Setup your local machine an install following tools:__
 
@@ -50,7 +52,8 @@ tar -xf apache-jmeter-5.6.3.tgz
 export PATH:$PATH:apache-jmeter-5.6.3/bin
 ```
 
-__4. Install Relational Migrator. See [Relationa Migrator installation guide](https://www.mongodb.com/docs/relational-migrator/installation/).__
+__4. Install Relational Migrator.__ 
+* See [Relationa Migrator installation guide](https://www.mongodb.com/docs/relational-migrator/installation/).
 
 
 __5. Original dataset was taken from [Dell DVD Store Database Test Suite](https://linux.dell.com/dvdstore/).__
@@ -94,13 +97,13 @@ export MDB_DB_URI="mongodb+srv://muser:mpwd@mongodb-server/mstore?retryWrites=tr
 ```
 
 __4. Import a new project into Relational Migrator using file ```relmig/Mstore.relmig```.__ 
-See [Import a project](https://www.mongodb.com/docs/relational-migrator/projects/import-project/)
+* See [import a project into Relational Migrator](https://www.mongodb.com/docs/relational-migrator/projects/import-project/)
 
 __5. Open Mstore project within Relational Migrator and visualize Relational and Document data models.__ 
-Learn [schema design patterns in MongoDB] (https://www.mongodb.com/docs/manual/data-modeling/design-patterns/)
+* Learn [schema design patterns in MongoDB](https://www.mongodb.com/docs/manual/data-modeling/design-patterns/)
 
 __6. Migrate data from PostgreSQL to MongoDB by creating a Snapshot job in Relational Migrator.__
-See [create a sync job](https://www.mongodb.com/docs/relational-migrator/jobs/sync-jobs/)
+* See [create a sync job](https://www.mongodb.com/docs/relational-migrator/jobs/sync-jobs/)
 
 __7. Compile project and generate jar file__
 
