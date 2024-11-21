@@ -93,11 +93,14 @@ export PG_DB_PWD=pgpwd
 export MDB_DB_URI="mongodb+srv://muser:mpwd@mongodb-server/mstore?retryWrites=true&w=majority&appName=mstore-demo"
 ```
 
-__4. Import a new project into Relational Migrator using file ```api/src/main/resources/static/Mstore.relmig```. See [Import a project](https://www.mongodb.com/docs/relational-migrator/projects/import-project/)__
+__4. Import a new project into Relational Migrator using file ```relmig/Mstore.relmig```.__ 
+See [Import a project](https://www.mongodb.com/docs/relational-migrator/projects/import-project/)
 
-__5. Open Mstore project within Relational Migrator and visualize Relational and Document data models. Learn [schema design patterns in MongoDB] (https://www.mongodb.com/docs/manual/data-modeling/design-patterns/)__ 
+__5. Open Mstore project within Relational Migrator and visualize Relational and Document data models.__ 
+Learn [schema design patterns in MongoDB] (https://www.mongodb.com/docs/manual/data-modeling/design-patterns/)
 
-__6. Migrate data from PostgreSQL to MongoDB by creating a Snapshot job in Relational Migrator. See [create a sync job](https://www.mongodb.com/docs/relational-migrator/jobs/sync-jobs/)__
+__6. Migrate data from PostgreSQL to MongoDB by creating a Snapshot job in Relational Migrator.__
+See [create a sync job](https://www.mongodb.com/docs/relational-migrator/jobs/sync-jobs/)
 
 __7. Compile project and generate jar file__
 
